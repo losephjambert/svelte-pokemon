@@ -62,6 +62,10 @@ button:focus {
   border-color: #666;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 ul {
   margin: 0;
   padding: 0;

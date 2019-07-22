@@ -3,12 +3,16 @@
   import { onMount } from "svelte";
   import Grid from "./Grid.svelte";
   import axios from "axios";
+
   // props
-  export let url = "";
+  export let baseUrl = "";
 
   // component logic
   let hydratedPokemon = new Array(0);
   let results = [];
+  let nextLink = null;
+  let previousLink = null;
+  let pokemonCount = null;
 
   const hydratePokemon = async url => {
     const data = await getSinglePokemon(url);
@@ -18,7 +22,7 @@
     }
   };
 
-  const handlePokemon = async () => {
+  const handlePokemon = async url => {
     const data = await getAllPokemon(url);
 
     if (data) {
@@ -27,6 +31,9 @@
         hydratePokemon(result.url);
       });
       results = data.data.results;
+      nextLink = data.data.next;
+      previousLink = data.data.previous;
+      pokemonCount = data.data.count;
     }
   };
 
@@ -46,38 +53,27 @@
     }
   };
 
-  onMount(async () => handlePokemon());
+  const handleNext = (event, ref) => {
+    // grab the next set of pokemon
+    handlePokemon(ref);
+  };
+
+  onMount(async () => handlePokemon(baseUrl));
 </script>
 
-<style>
-  h1.grid-title {
-    font-size: 3em;
-    text-align: center;
-  }
-  p.grid-description {
-    text-align: center;
-  }
-  section.section-introduction {
-    margin: 25px 0 100px;
-  }
-</style>
-
-<article class="pokemon-list">
-  <section class="section-introduction">
-    <h1 class="grid-title">Pokemon</h1>
-    <p class="grid-description">
-      A list of all known pokemon, sorted by pokedex id.
-    </p>
-  </section>
-  <ul>
-    {#await hydratedPokemon}
-      <li>waiting for pokemon to load...</li>
-    {:then result}
-      <li>
-        <Grid data={result} />
-      </li>
-    {:catch error}
-      <li>Something went wrong: {error.message}</li>
-    {/await}
-  </ul>
-</article>
+<ul>
+  {#await hydratedPokemon}
+    <li>waiting for pokemon to load...</li>
+  {:then result}
+    <li>
+      <Grid
+        data={result}
+        previous={previousLink}
+        next={nextLink}
+        count={pokemonCount}
+        handleClick={handleNext} />
+    </li>
+  {:catch error}
+    <li>Something went wrong: {error.message}</li>
+  {/await}
+</ul>
