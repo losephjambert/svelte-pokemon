@@ -18,7 +18,7 @@
   }
   .card-title > h1 {
     text-transform: capitalize;
-    font-size: 2em;
+    font-size: 1.3em;
     margin: 0;
     background-color: black;
     color: white;
