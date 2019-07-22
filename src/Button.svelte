@@ -10,5 +10,5 @@
 </style>
 
 <button class="button" type="button" on:click={e => handleClick(e, ref)}>
-  {text}
+  {#if text}{text}{/if}
 </button>

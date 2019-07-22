@@ -2,6 +2,7 @@
   // imports
   import Card from "./Card.svelte";
   import Button from "./Button.svelte";
+  import Link from "./Link.svelte";
 
   // props
   export let data;
@@ -16,11 +17,16 @@
     display: grid;
   }
   .grid-main {
-    grid-gap: 10px;
+    /* grid-gap: 10px; */
     row-gap: 50px;
-    grid-template-columns: repeat(4, [col] 20%);
-    margin: auto;
-    justify-content: center;
+
+    /* grid-template-columns: repeat(4, [col] 20%); */
+    grid-template-columns: repeat(9, 10vw);
+    /* justify-content: center; */
+  }
+  .grid-item {
+    /* grid-column: span 3; */
+    /* grid-row: 3/5; */
   }
   ul {
     margin: 0 0 25px;
@@ -44,7 +50,11 @@
   </ul>
   <div class="grid grid-main">
     {#each data as item}
-      <Card data={item} />
+      <div class="grid-item">
+        <Link href={`/detail/${item ? item.name : ''}`}>
+          <Card data={item} />
+        </Link>
+      </div>
     {/each}
   </div>
   {#if next}
