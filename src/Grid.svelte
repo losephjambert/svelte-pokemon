@@ -4,6 +4,11 @@
   import Button from "./Button.svelte";
   import Link from "./Link.svelte";
 
+  // store test
+  // store test
+  import { pokemon } from "./stores";
+  console.log($pokemon);
+
   // props
   export let data;
   export let count;
@@ -17,16 +22,17 @@
     display: grid;
   }
   .grid-main {
-    /* grid-gap: 10px; */
-    row-gap: 50px;
+    grid-gap: 15px;
+    /* row-gap: 15px; */
 
     /* grid-template-columns: repeat(4, [col] 20%); */
-    grid-template-columns: repeat(9, 10vw);
-    /* justify-content: center; */
+    grid-template-columns: repeat(auto-fill, 300px);
+    justify-content: center;
   }
   .grid-item {
     /* grid-column: span 3; */
     /* grid-row: 3/5; */
+    height: 300px;
   }
   ul {
     margin: 0 0 25px;

@@ -1,3 +1,12 @@
 import { writable } from "svelte/store";
 
-export const pokemon = writable([]);
+function appendPokemon() {
+  const { subscribe, update } = writable([]);
+
+  return {
+    subscribe,
+    add: payload => update(p => [...p, payload])
+  };
+}
+
+export const pokemon = appendPokemon();

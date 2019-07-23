@@ -4,6 +4,9 @@
   import Grid from "./Grid.svelte";
   import axios from "axios";
 
+  // store test
+  import { pokemon } from "./stores";
+
   // props
   export let baseUrl = "";
 
@@ -34,6 +37,7 @@
       nextLink = data.data.next;
       previousLink = data.data.previous;
       pokemonCount = data.data.count;
+      pokemon.add(1);
     }
   };
 

@@ -16,5 +16,7 @@
     </section>
     <FetchPokemonData baseUrl={url} />
   </article>
+
   <Router {routes} />
+
 </main>

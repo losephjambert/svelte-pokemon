@@ -1,1 +1,1 @@
-<h2>This is the fucking home content</h2>
+<h2>This is the home content</h2>

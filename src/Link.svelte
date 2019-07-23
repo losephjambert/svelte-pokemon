@@ -6,6 +6,7 @@
 <style>
   .link {
     display: block;
+    height: inherit;
   }
 </style>
 
