@@ -5,5 +5,5 @@ export default {
   // Exact path
   "/": Home,
 
-  "/detail/:name": Detail
+  "/detail/:name/:id?": Detail
 };

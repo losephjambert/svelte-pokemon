@@ -7,8 +7,7 @@
   // store test
   // store test
   import { pokemon } from "./stores";
-  console.log($pokemon);
-
+  console.log(pokemon.count());
   // props
   export let data;
   export let count;
@@ -23,15 +22,10 @@
   }
   .grid-main {
     grid-gap: 15px;
-    /* row-gap: 15px; */
-
-    /* grid-template-columns: repeat(4, [col] 20%); */
     grid-template-columns: repeat(auto-fill, 300px);
     justify-content: center;
   }
   .grid-item {
-    /* grid-column: span 3; */
-    /* grid-row: 3/5; */
     height: 300px;
   }
   ul {
@@ -51,13 +45,13 @@
 
 <section>
   <ul>
-    <li>1 - {data.length} out of {count} pokemon</li>
+    <li>1 - {$pokemon.length} out of {count} pokemon</li>
     <li>(scroll for more)</li>
   </ul>
   <div class="grid grid-main">
-    {#each data as item}
-      <div class="grid-item">
-        <Link href={`/detail/${item ? item.name : ''}`}>
+    {#each $pokemon as item}
+      <div class="grid-item" style={`order: ${item.id}`}>
+        <Link href={`/detail/${item ? item.name : ''}/${item ? item.id : ''}`}>
           <Card data={item} />
         </Link>
       </div>

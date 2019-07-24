@@ -1,6 +1,6 @@
 <script>
   import Router from "svelte-spa-router";
-  import FetchPokemonData from "./FetchPokemonData.svelte";
+  import Pokemon from "./Pokemon.svelte";
   import routes from "./routes";
   export let url;
   export let appTitle;
@@ -14,7 +14,7 @@
       <h1 class="grid-title">{appTitle}</h1>
       <p class="grid-description">{appDescription}</p>
     </section>
-    <FetchPokemonData baseUrl={url} />
+    <Pokemon baseUrl={url} />
   </article>
 
   <Router {routes} />
